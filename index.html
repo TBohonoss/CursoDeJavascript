@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,17 +19,17 @@
         somar.teste = "Propriedade da função";
         console.log(somar.teste);
 
-        var teste1 = function(str) {
+        var teste1 = function (str) {
             console.log("Teste", str);
         };
 
         teste1("enviado");
 
-        var teste2 = function(f) {
+        var teste2 = function (f) {
             f();
         };
 
-        teste2(function(){
+        teste2(function () {
             console.log("Função passada por parâmetro");
         })
 
@@ -43,14 +44,37 @@
             console.log("Mostra x:", x);
             console.log("Mostra y:", y);
         }
-        
+
         mostraX();
 
         console.log("Mostra x:", x);
         console.log("Mostra y:", y);
+
+        //Podem ser auto-executáveis (IFEE)
+        (function () {
+            "use strict";
+            var isValid = false;
+            console.log(isValid);
+
+            function somar(arr) {
+                console.log(arguments);
+                var result = 0;
+                var x = 0;
+
+                while(arguments[x]) {
+                    result += arguments[x];
+                    x++;
+                }
+                console.log("Result: ", result);
+            }
+
+            somar(20, 20, 10, 40);
+        })();
     </script>
 </head>
+
 <body>
     <h1>Curso Javascript Completo</h1>
 </body>
+
 </html>
