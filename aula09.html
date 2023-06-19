@@ -80,33 +80,32 @@
         <script>            
             (function(){
                 'use strict'
-                var trs = document.querySelectorAll(".js-tabela tbody .aluno")
+                var trs = document.querySelectorAll(".js-tabela tbody .aluno");                
                 
                 var x = 0;
                 while(trs[x]){
-                    var linhAluno = trs[x];
-                    console.log(linhAluno);
-
-                    var n1, n2, n3, n4, media;
-
-                    var tds = linhAluno.querySelectorAll("td");
-                    console.log(tds);
-
-                    n1 = pegaNota(tds[1]);
-                    n2 = pegaNota(tds[2]);
-                    n3 = pegaNota(tds[3]);
-                    n4 = pegaNota(tds[4]);
-
-                    media = calcularMedia(n1, n2, n3, n4);
-                   
-                    linhAluno.querySelector(".aluno-m").textContent = media;
+                    var linhaAluno = trs[x];  
+                    var tds = linhaAluno.querySelectorAll("td");
+                    var notas = recuperarNumerosDeColunas(tds);  
+                    var media = calcularMedia.apply(this, notas);
+                    
+                    linhaAluno.querySelector(".aluno-m").textContent = media;
                     x++;
                 }
+                
+                function recuperarNumerosDeColunas(tds){
+                    var x= 0;
+                    var arr = [];
 
-                function pegaNota(td){
-                    return parseFloat(td.textContent);
+                    while(tds[x]){
+                        if(!isNaN(tds[x].textContent) && tds[x].textContent !== " "){
+                            arr.push(parseFloat(tds[x].textContent));
+                        }
+                        x++;
+                    }
+                    return arr;
                 }
-            })()            
+            })()           
         </script>        
     </body>
 </html>
